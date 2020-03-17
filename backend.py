@@ -89,7 +89,6 @@ class Character:
             )[0],
             'color scheme': choice(colors)
         }
-        print(self.the_self)
 
     def __str__(self):
         string = ""
