@@ -9,7 +9,14 @@ class Verse:
         self.the_self = {}
         self.init_factions()
         self.init_tone()
-        self.init_self()
+
+    def __str__(self):
+        string = ""
+        for d in [self.factions, self.tone]:
+            for k, v in d.items():
+                string += f"{k.title()}: {v.title()}\n"
+
+        return string
 
     def init_factions(self):
         agencies = ['aegis', 'strike']
@@ -46,7 +53,17 @@ class Verse:
                     0.1
                 ], k=1)[0])
 
-    def init_self(self):
+
+    def print_self(self):
+        print(self.factions)
+        print(self.tone)
+        print(self.the_self)
+
+
+class Character:
+
+
+    def __init__(self):
         colors = [
             'red',
             'orange',
@@ -61,7 +78,7 @@ class Verse:
             'gold'
         ]
         self.the_self = {
-            'gender': choices(['same', 'different'], [3, 1], k=1)[0],
+            'gender': choices(['same', 'different'], [2, 1], k=1)[0],
             'personality': choices([
                 'very different',
                 'moderately different',
@@ -72,13 +89,18 @@ class Verse:
             )[0],
             'color scheme': choice(colors)
         }
-
-    def print_self(self):
-        print(self.factions)
-        print(self.tone)
         print(self.the_self)
+
+    def __str__(self):
+        string = ""
+        for k, v in self.the_self.items():
+            string += f"{k.title()}: {v.title()}\n"
+
+        return string.strip()
 
 
 if __name__ == "__main__":
-    verse = Verse()
-    verse.print_self()
+    #verse = Verse()
+    #verse.print_self()
+    char = Character()
+    print(str(char))
