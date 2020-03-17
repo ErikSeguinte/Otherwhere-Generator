@@ -9,20 +9,36 @@ menu_def = [['File', ['Open', 'Save', 'Exit', 'Properties']],
             ['Help', 'About...'], ]
 
 verse = backend.Verse()
-tone = verse.tone
+char = backend.Character()
+
+left = sg.Column([
+    [sg.Text('Verse'), sg.Button('Randomize Verse')],
+    [sg.Multiline(str(verse), key='verse')]
+])
+right = sg.Column([
+    [sg.Text('Character'),sg.Button('Randomize Character')],
+    [sg.Multiline(str(char), key='character')]
+])
 
 
 layout = [
             [sg.Menu(menu_def, tearoff=False)],
-            [sg.MultilineOutput(str(verse))],
-            [sg.Text('Please enter your Name, Address, Phone')],
-            [sg.Text('Outlook', size=(15, 1)), sg.InputText(tone['outlook'])],
-            [sg.Text('Address', size=(15, 1)), sg.InputText('address')],
-            [sg.Text('Phone', size=(15, 1)), sg.InputText('phone')],
-            [sg.Submit(), sg.Cancel()]
+            [left, right],
+            [sg.Exit()]
             ]
 
 window = sg.Window('Simple data entry window').Layout(layout)
-button, values = window.Read()
+#button, values = window.Read()
+#
+#print(button, values[0], values[1], values[2])
 
-print(button, values[0], values[1], values[2])
+while True:
+    event, values = window.read()
+    if event in (None, 'Exit'):
+        break
+    if event =='Randomize Verse':
+        window['verse'].update(str(backend.Verse()))
+    elif event == 'Randomize Character':
+        window['character'].update(str(backend.Character()))
+
+window.close()
