@@ -1,5 +1,5 @@
-import PySimpleGUIQt as sg
-#import PySimpleGUIWx as sg
+#import PySimpleGUIQt as sg
+import PySimpleGUI as sg
 import backend
 
 # Very basic window.  Return values as a list
@@ -12,11 +12,11 @@ verse = backend.Verse()
 char = backend.Character()
 
 left = sg.Column([
-    [sg.Text('Verse'), sg.Button('Randomize Verse')],
+    [sg.Text('Verse'), sg.Stretch(), sg.Button('Randomize Verse', size= (20, 0.7)), ],
     [sg.Multiline(str(verse), key='verse')]
 ])
 right = sg.Column([
-    [sg.Text('Character'),sg.Button('Randomize Character')],
+    [sg.Text('Character'),sg.Button('Randomize Character', size=(20,0.7))],
     [sg.Multiline(str(char), key='character')]
 ])
 
@@ -24,7 +24,7 @@ right = sg.Column([
 layout = [
             [sg.Menu(menu_def, tearoff=False)],
             [left, right],
-            [sg.Exit()]
+            [sg.Exit(size = (5, .7))]
             ]
 
 window = sg.Window('Simple data entry window').Layout(layout)
