@@ -43,6 +43,7 @@ class Verse:
                 'higher',
                 'far higher',
                 'indistinguishable from magic',
+                'post-apocalyptic'
             ],
                 weights=[
                     15,
@@ -50,7 +51,8 @@ class Verse:
                     25,
                     25,
                     25,
-                    0.1
+                    0.5,
+                    0.5,
                 ], k=1)[0])
 
 
@@ -61,6 +63,29 @@ class Verse:
 
 
 class Character:
+
+    playbooks = [
+        'Beacon',
+        'Brain',
+        'Bull',
+        'Delinquent',
+        'Doomed',
+        'Harbinger',
+        'Innocent',
+        'Janus',
+        'Joined',
+        'Legacy',
+        'Newborn',
+        'Nomad',
+        'Nova',
+        'Outsider',
+        'Protége',
+        'Reformed',
+        'Scion',
+        'Soldier',
+        'Star',
+        'Transformed'
+    ]
 
 
     def __init__(self):
@@ -87,7 +112,8 @@ class Character:
                 'very similar'],
                 k=1
             )[0],
-            'color scheme': choice(colors)
+            'color scheme': choice(colors),
+            'playbook': choice(self.playbooks)
         }
 
     def __str__(self):
